@@ -1,15 +1,14 @@
 #singleaccount, if you wanna use multiple account add , eg: ['address 1', 'address 2']
 account = ['']
 private = ['']
-# private = ['a']
 #Defaultgwei
-gwei1 = 19
+gwei1 = 16
 
 #gweiforsell
-gsell = 6
+gsell = 16
 
 #gweiforapprove
-gaprv = 5
+gaprv = 16
 
 #Defaultminbuy
 nonimal1 = 0.01
@@ -28,10 +27,6 @@ gas = 2000000
 honeypotdotio = 'https://aywt3wreda.execute-api.eu-west-1.amazonaws.com/default/IsHoneypot?chain=eth&token='
 
                 
-
-#checker 2
-tigerrouter = '0x18be7f977Ec1217B71D0C134FBCFF36Ea4366fCD'
-
 
 #MinimumLP
 minLP = 0.01

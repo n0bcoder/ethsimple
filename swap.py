@@ -224,7 +224,7 @@ class SWP():
         print(key.CYELLOW+'Checking Profit!'+key.RESET)
         add = self.wallets()[0]
         wbnb = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
-        busd = '0x4Fabb145d64652a948d72533023f6E7A623C7C53'
+        busd = '0xdAC17F958D2ee523a2206206994597C13D831ec7'
         while True:
             try:
                 t_balance = self.tcontract().functions.balanceOf(add[0]).call()
@@ -257,11 +257,11 @@ class SWP():
                         break
                 if pair == wbnb:
                     to_usd = self.prouter()[0].functions.getAmountsOut(int(c_balance[1]),[pair, busd]).call()
-                    usd = self.w3.fromWei(to_usd[1],'ether')
-                    print(key.CYELLOW+'Your Profit: '+key.RESET+key.CGREEN+str(p_value)+' '+str(self.p_symbol)+key.RESET+' | '+key.CYELLOW+str(usd)+' '+'USD', end='\r'+key.RESET)
+                    usd = float(to_usd[1] / (10**6))
+                    print(key.CYELLOW+'Your Profit: '+key.RESET+key.CGREEN+str(round(p_value, 6))+' '+str(self.p_symbol)+key.RESET+' | '+key.CYELLOW+str(round(usd, 6))+' '+'USD', end='\r'+key.RESET)
                     time.sleep(1)
                 else:
-                    print(key.CYELLOW+' Your Profit: '+key.RESET+key.CGREEN+str(p_value)+' '+str(self.p_symbol), end='\r'+key.RESET)
+                    print(key.CYELLOW+' Your Profit: '+key.RESET+key.CGREEN+str(round(p_value, 6))+' '+str(self.p_symbol), end='\r'+key.RESET)
                     time.sleep(1)
             except Exception as e:
                 if 'execution reverted' in str(e):
@@ -617,7 +617,7 @@ class SWP():
         
     def bal(self):
         add = set.account
-        busd = '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56'
+        busd = '0xdAC17F958D2ee523a2206206994597C13D831ec7'
         def balance(bl):
             output = []
             for i in range(0,len(bl)):
@@ -630,7 +630,7 @@ class SWP():
         total = sum(balance(add))
         c_total = self.w3.toWei(total,'ether')
         bcheck = self.prouter()[0].functions.getAmountsOut(int(c_total),[self.pair, busd]).call()
-        busdr = self.w3.fromWei(bcheck[1],'ether')
+        busdr = float(bcheck[1] / (10**6))
         print('total : ', total, 'ETH /', busdr, 'USD')
         sys.exit()
 
